@@ -31,6 +31,8 @@ Resource* ResourceManager<Resource, ID>::get(ID id)
 {
     if (m_mapResources.find(id) != m_mapResources.end()) // Check if resource exists
         return m_mapResources[id];
+
+    return nullptr;
 }
 
 template<typename Resource, typename ID>
