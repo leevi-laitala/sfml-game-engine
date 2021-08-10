@@ -16,7 +16,23 @@ Balloon::~Balloon()
 
 void Balloon::update()
 {
-    m_spr.setPosition(sf::Vector2f(sf::Mouse::getPosition(*m_hostWindow).x,
-                                   sf::Mouse::getPosition(*m_hostWindow).y));
+    apparentPos = sf::Mouse::getPosition(*m_hostWindow);
+
+    if (sf::Mouse::getPosition(*m_hostWindow).x < m_spr.getTexture()->getSize().x / 2.f)
+        apparentPos.x = m_spr.getTexture()->getSize().x / 2.f;
+
+    if (sf::Mouse::getPosition(*m_hostWindow).x > m_hostWindow->getSize().x - m_spr.getTexture()->getSize().x / 2.f)
+        apparentPos.x = m_hostWindow->getSize().x - m_spr.getTexture()->getSize().x / 2.f;
+
+    if (sf::Mouse::getPosition(*m_hostWindow).y < m_spr.getTexture()->getSize().y / 2.f)
+        apparentPos.y = m_spr.getTexture()->getSize().y / 2.f;
+
+    if (sf::Mouse::getPosition(*m_hostWindow).y > m_hostWindow->getSize().y - m_spr.getTexture()->getSize().y / 2.f)
+        apparentPos.y = m_hostWindow->getSize().y - m_spr.getTexture()->getSize().y / 2.f;
+    
+    m_spr.setPosition(sf::Vector2f(apparentPos.x, apparentPos.y));
+
+    //m_spr.setPosition(sf::Vector2f(sf::Mouse::getPosition(*m_hostWindow).x,
+    //                               sf::Mouse::getPosition(*m_hostWindow).y));
 }
 

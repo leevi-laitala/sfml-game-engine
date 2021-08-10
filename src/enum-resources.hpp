@@ -1,12 +1,21 @@
 #pragma once
 
-namespace Resources
+namespace System
 {
-    enum Textures
+    namespace Resources
     {
-        Balloon,
-        Heart,
-        Dagger,
-        Pop
+        enum Textures
+        {
+            Balloon,
+            Heart,
+            Dagger,
+            Pop
+        };
+    }
+
+    enum Scenes
+    {
+        Mainmenu,
+        Game
     };
 }
