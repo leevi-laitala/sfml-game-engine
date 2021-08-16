@@ -1,10 +1,9 @@
 #include "hagrid.hpp"
+#include <string>
 
 int main()
 {
     Hagrid hagrid;
-    
-    hagrid.initWindow(1280, 720, "SFML app");
     hagrid.run();
 
     return 0;

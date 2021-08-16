@@ -9,7 +9,8 @@ public:
     Hagrid();
     ~Hagrid();
 
-    void run() override;
+    void create() override;
+    void step() override;
     void end() override;
 };
 
@@ -29,44 +30,32 @@ Hagrid::~Hagrid()
 {
 }
 
-void Hagrid::run()
+void Hagrid::create()
 {
     createScene(System::Scenes::Game);
     createScene(System::Scenes::Mainmenu);
     addElement(System::Scenes::Game, dynamic_cast<Element*>(new Balloon(getScene(System::Scenes::Game), resTextures.get(System::Resources::Textures::Balloon))));
     switchScene(System::Scenes::Game);
 
-    while (window->isOpen())
-    {
-        sf::Event event;
-        window->clear(sf::Color(220, 125, 210));
-
-        while (window->pollEvent(event))
+    eventManager.addMouseButtonCallback(sf::Mouse::Button::Left, [&](const sf::Event&){ 
+        if (activeScene == System::Scenes::Game)
         {
-            if (event.type == sf::Event::Closed)
-                window->close();
-        }
-        
-        if (event.type == sf::Event::MouseButtonPressed)
+            switchScene(System::Scenes::Mainmenu);
+        } else
         {
-            if (activeScene == System::Scenes::Game)
-            {
-                switchScene(System::Scenes::Mainmenu);
-            } else
-            {
-                switchScene(System::Scenes::Game);
-            }
+            switchScene(System::Scenes::Game);
         }
+    });
+}
 
-        renderScene();
-
-        window->display();
-    }
-
-    resTextures.purge();
+void Hagrid::step()
+{
+    updateScene(activeScene);
+    renderScene(activeScene);
 }
 
 void Hagrid::end()
 {
+    resTextures.purge();
 }
 
