@@ -24,3 +24,13 @@ void Element::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(m_spr, states);
 }
 
+void Element::move(const sf::Vector2f& amount, const bool& relative)
+{
+    if (relative)
+    {
+        m_spr.setPosition(sf::Vector2f(m_spr.getPosition().x + amount.x,
+                                       m_spr.getPosition().y + amount.y));
+    } else
+        m_spr.setPosition(amount);
+}
+

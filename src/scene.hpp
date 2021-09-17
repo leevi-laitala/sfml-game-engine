@@ -19,7 +19,7 @@ public:
 
     void addElement(Element* element);
 
-    void updateElements();
+    void updateElements(const float& deltaTime);
     void render();
 
     Scene* getScene();

@@ -56,6 +56,7 @@ void Hagrid::step()
 
 void Hagrid::end()
 {
-    resTextures.purge();
+    std::cout << "About tot purge assets" << std::endl;
+    //resTextures.purge();
 }
 

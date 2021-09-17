@@ -19,6 +19,10 @@ protected:
 
     EventManager eventManager;
 
+    sf::Clock m_deltaTimeClock;
+    sf::Time m_deltaTimeClass;
+    float deltaTime;
+
 public:
     Engine();
     ~Engine();

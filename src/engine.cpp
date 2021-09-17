@@ -4,7 +4,7 @@ Engine::Engine()
     : window(sf::VideoMode(1280, 720), "SFML")
     , eventManager(&window)
 {
-    window.setFramerateLimit(60);
+    //window.setFramerateLimit(60);
     eventManager.addCallback(sf::Event::Closed, [&](const sf::Event&){ window.close(); });
 }
 
@@ -16,10 +16,15 @@ Engine::~Engine()
 
 void Engine::run()
 {
+    m_deltaTimeClock.restart();
+
     create();
 
     while (window.isOpen())
     {
+        m_deltaTimeClass = m_deltaTimeClock.restart();
+        deltaTime = m_deltaTimeClass.asSeconds();
+
         window.clear();
         
         eventManager.processEvents();
@@ -29,7 +34,11 @@ void Engine::run()
         window.display();
     }
 
+    std::cout << "Calling end" << std::endl;
+
     end();
+
+    std::cout << "Kakkeli" << std::endl;
 }
 
 void Engine::createScene(System::Scenes scene)
@@ -63,7 +72,7 @@ void Engine::renderScene(System::Scenes scene)
 void Engine::updateScene(System::Scenes scene)
 {
     if (m_mapScenes.find(scene) != m_mapScenes.end()) // Check if scene exists
-        m_mapScenes[scene]->updateElements();
+        m_mapScenes[scene]->updateElements(deltaTime);
 }
 
 Scene* Engine::getScene(System::Scenes scene)

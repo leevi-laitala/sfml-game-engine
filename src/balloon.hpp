@@ -16,5 +16,5 @@ public:
     Balloon(Scene* hostScene, sf::Texture* tex, const sf::Vector2f& pos = sf::Vector2f(0.f, 0.f));
     ~Balloon();
 
-    void update() override;
+    void update(const float& deltaTime) override;
 };
