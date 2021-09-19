@@ -28,16 +28,16 @@ void Balloon::update(const float& deltaTime)
     //if (m_spr.getPosition().y > sf::Mouse::getPosition(*m_hostWindow).y)
     //    m_spr.setPosition(m_spr.getPosition().x, m_spr.getPosition().y - 32.f * deltaTime);
     //
-    if (m_spr.getPosition().x < sf::Mouse::getPosition(*m_hostWindow).x)
+    if (m_spr.getPosition().x < sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).x)
         move(sf::Vector2f(32.f * deltaTime, 0.f), true);
 
-    if (m_spr.getPosition().x > sf::Mouse::getPosition(*m_hostWindow).x)
+    if (m_spr.getPosition().x > sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).x)
         move(sf::Vector2f(-32.f * deltaTime, 0.f), true);
 
-    if (m_spr.getPosition().y < sf::Mouse::getPosition(*m_hostWindow).y)
+    if (m_spr.getPosition().y < sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).y)
         move(sf::Vector2f(0.f, 32.f * deltaTime), true);
 
-    if (m_spr.getPosition().y > sf::Mouse::getPosition(*m_hostWindow).y)
+    if (m_spr.getPosition().y > sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).y)
         move(sf::Vector2f(0.f, -32.f * deltaTime), true);
     //if (m_spr.getPosition().x < *m_hostWindow.get)
     //m_spr.setPosition(sf::Vector2f(m_spr.getPosition().x + 16.f, 0.f));

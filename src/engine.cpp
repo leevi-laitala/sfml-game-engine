@@ -45,7 +45,7 @@ void Engine::createScene(System::Scenes scene)
 {
     if (m_mapScenes.find(scene) == m_mapScenes.end())
     {
-        Scene* newScene = new Scene(&window);
+        Scene* newScene = new Scene(const_cast<Engine*>(this));
         m_mapScenes.insert(std::pair<System::Scenes, Scene*>(scene, newScene));
     }
 }
@@ -82,3 +82,14 @@ Scene* Engine::getScene(System::Scenes scene)
 
     return nullptr;
 }
+
+sf::RenderWindow* Engine::getWindow()
+{
+    return &window;
+}
+
+EventManager* Engine::getEventManager()
+{
+    return &eventManager;
+}
+

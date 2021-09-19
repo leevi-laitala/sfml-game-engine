@@ -2,7 +2,6 @@
 
 #include "scene.hpp"
 #include "element.hpp"
-#include "balloon.hpp"
 #include "resource-manager.hpp"
 #include "enum-resources.hpp"
 #include "event-manager.hpp"
@@ -33,6 +32,10 @@ public:
     virtual void create() = 0;
     virtual void step() = 0;
     virtual void end() = 0;
+    
+    // Access to members
+    sf::RenderWindow* getWindow();
+    EventManager* getEventManager();
 
     // Scene management
     void createScene(System::Scenes scene);

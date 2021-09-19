@@ -1,6 +1,7 @@
 #pragma once
 
 #include "element.hpp"
+#include "scene.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>

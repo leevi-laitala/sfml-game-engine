@@ -1,20 +1,23 @@
 #pragma once
 
 #include "element.hpp"
-#include "balloon.hpp"
+#include "engine.hpp"
 
 #include <vector>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+class EventManager;
+class Engine;
+
 class Scene
 {
 private:
-    sf::RenderWindow* m_hostWindow;
     std::vector<Element*> m_vecElements;
+    Engine* engine;
 
 public:
-    Scene(sf::RenderWindow* hostWindow);
+    Scene(Engine* engine);
     ~Scene();
 
     void addElement(Element* element);
@@ -23,5 +26,5 @@ public:
     void render();
 
     Scene* getScene();
-    sf::RenderWindow* getWindow();
+    Engine* getEngine();
 };

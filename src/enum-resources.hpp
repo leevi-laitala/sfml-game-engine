@@ -9,7 +9,13 @@ namespace System
             Balloon,
             Heart,
             Dagger,
-            Pop
+            Pop,
+            Button
+        };
+
+        enum Fonts
+        {
+            Default
         };
     }
 

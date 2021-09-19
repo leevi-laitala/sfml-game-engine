@@ -10,8 +10,6 @@ Element::Element(Scene* hostScene, sf::Texture* tex, const sf::Vector2f& pos)
 
     m_spr.setTexture(*m_tex);
     m_spr.setPosition(pos);
-    
-    m_hostWindow = m_hostScene->getWindow();
 }
 
 Element::~Element()
@@ -33,4 +31,3 @@ void Element::move(const sf::Vector2f& amount, const bool& relative)
     } else
         m_spr.setPosition(amount);
 }
-

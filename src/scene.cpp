@@ -1,8 +1,8 @@
 #include "scene.hpp"
 
-Scene::Scene(sf::RenderWindow* hostWindow)
+Scene::Scene(Engine* engine)
 {
-    m_hostWindow = hostWindow;
+    this->engine = engine;
 }
 
 Scene::~Scene()
@@ -25,7 +25,7 @@ void Scene::updateElements(const float& deltaTime)
 void Scene::render()
 {
     for (std::vector<Element*>::iterator it = m_vecElements.begin(); it != m_vecElements.end(); ++it)
-        (*it)->draw(*m_hostWindow);
+        (*it)->draw(*(engine->getWindow()));
 }
 
 Scene* Scene::getScene()
@@ -33,8 +33,7 @@ Scene* Scene::getScene()
     return const_cast<Scene*>(this);
 }
 
-sf::RenderWindow* Scene::getWindow()
+Engine* Scene::getEngine()
 {
-    return m_hostWindow;
+    return engine;
 }
-
