@@ -6,6 +6,11 @@ Engine::Engine()
 {
     //window.setFramerateLimit(60);
     eventManager.addCallback(sf::Event::Closed, [&](const sf::Event&){ window.close(); });
+
+    eventManager.addCallback(sf::Event::Resized, [&](const sf::Event& event){ 
+        sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+        window.setView(sf::View(visibleArea));
+    });
 }
 
 Engine::~Engine()
@@ -38,7 +43,7 @@ void Engine::run()
 
     end();
 
-    std::cout << "Kakkeli" << std::endl;
+    std::cout << "End ran" << std::endl;
 }
 
 void Engine::createScene(System::Scenes scene)

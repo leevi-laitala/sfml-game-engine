@@ -40,15 +40,12 @@ void Hagrid::create()
 {
     createScene(System::Scenes::Game);
     createScene(System::Scenes::Mainmenu);
+
     addElement(System::Scenes::Game, dynamic_cast<Element*>(new Balloon(getScene(System::Scenes::Game), resTextures.get(System::Resources::Textures::Balloon))));
+    addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Mainmenu), resTextures.get(System::Resources::Textures::Button), resFonts.get(System::Resources::Fonts::Default), "Game", [&](){ switchScene(System::Scenes::Game); })));
+    addElement(System::Scenes::Game, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Game), resTextures.get(System::Resources::Textures::Button), resFonts.get(System::Resources::Fonts::Default), "Mainmenu", [&](){ switchScene(System::Scenes::Mainmenu); }, sf::Vector2f(512.f, 512.f))));
 
-    addElement(System::Scenes::Game, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Game), resTextures.get(System::Resources::Textures::Button), resFonts.get(System::Resources::Fonts::Default), "Mainmenu", 
-                    [&](const sf::Event&){ switchScene(System::Scenes::Mainmenu); }, sf::Vector2f(512.f, 512.f))));
-
-    addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Mainmenu), resTextures.get(System::Resources::Textures::Button), resFonts.get(System::Resources::Fonts::Default), "Jofa :D", 
-                    [&](const sf::Event&){ std::cout << "Joo o" << std::endl; }, sf::Vector2f(512.f, 128.f))));
-
-    switchScene(System::Scenes::Game);
+    switchScene(System::Scenes::Mainmenu);
 }
 
 void Hagrid::step()
@@ -62,4 +59,3 @@ void Hagrid::end()
     std::cout << "About tot purge assets" << std::endl;
     resTextures.purge();
 }
-

@@ -1,9 +1,10 @@
 #include "button.hpp"
 
-Button::Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::string& str, std::function<void(const sf::Event& event)> callback, const sf::Vector2f& pos)
-    : Element::Element(hostScene, tex, pos)
+Button::Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::string& str, const std::function<void()>& func, const sf::Vector2f& pos)
+    : Element::Element(hostScene, tex, pos), m_eventManager(hostScene->getEngine()->getWindow())
 {
     m_hostScene = hostScene;
+    buttonFunction = func;
     
     m_spr.setTexture(*tex);
     m_spr.setPosition(pos);
@@ -23,7 +24,7 @@ Button::Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::str
     //    if (m_hovering) { m_hostScene->getEngine()->switchScene(System::Scenes::Mainmenu); }
     //});
     
-    m_hostScene->getEngine()->getEventManager()->addMouseButtonCallback(sf::Mouse::Button::Left, callback);
+    //m_hostScene->getEngine()->getEventManager()->addMouseButtonCallback(sf::Mouse::Button::Left, callback);
 }
 
 Button::~Button() {};
@@ -31,6 +32,13 @@ Button::~Button() {};
 void Button::update(const float& deltaTime)
 { 
     m_hovering = m_spr.getGlobalBounds().contains(sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).x, sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).y);
+    m_pressed = m_hovering && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    
+    m_spr.setColor(sf::Color(255, 255, 255, (m_hovering) ? alphaOnHover : 255));
+    
+    if (m_pressed && m_hovering)
+        buttonFunction();
+
 }
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
