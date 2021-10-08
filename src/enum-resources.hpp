@@ -6,6 +6,7 @@ namespace System
     {
         enum Textures
         {
+            Default = 0,
             Balloon,
             Heart,
             Dagger,
@@ -15,8 +16,13 @@ namespace System
 
         enum Fonts
         {
-            Default
+            Default = 0
         };
+
+        enum Sounds
+        {
+            Default = 0
+        }
     }
 
     enum Scenes

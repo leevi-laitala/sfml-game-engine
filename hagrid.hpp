@@ -9,6 +9,7 @@ class Hagrid : public Engine
 private:
     ResourceManager<sf::Texture, System::Resources::Textures> resTextures;
     ResourceManager<sf::Font, System::Resources::Fonts> resFonts;
+    ResourceManager<sf::Sound, System::Resources::Sounds> resSounds;
 
 public:
     Hagrid();

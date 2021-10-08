@@ -1,10 +1,10 @@
 #include "button.hpp"
 
-Button::Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::string& str, const std::function<void()>& func, const sf::Vector2f& pos)
+Button::Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::string& str, const std::function<void()>& function, const sf::Vector2f& pos)
     : Element::Element(hostScene, tex, pos), m_eventManager(hostScene->getEngine()->getWindow())
 {
     m_hostScene = hostScene;
-    buttonFunction = func;
+    buttonFunction = function;
     
     m_spr.setTexture(*tex);
     m_spr.setPosition(pos);
@@ -19,12 +19,6 @@ Button::Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::str
     sf::FloatRect sprRect = m_spr.getLocalBounds();
     m_text.setPosition(m_spr.getPosition().x + sprRect.width / 2.f, m_spr.getPosition().y + sprRect.height / 2.f);
     m_text.setFillColor(sf::Color::White);
-
-    //m_hostScene->getEngine()->getEventManager()->addMouseButtonCallback(sf::Mouse::Button::Left, [&](const sf::Event&){
-    //    if (m_hovering) { m_hostScene->getEngine()->switchScene(System::Scenes::Mainmenu); }
-    //});
-    
-    //m_hostScene->getEngine()->getEventManager()->addMouseButtonCallback(sf::Mouse::Button::Left, callback);
 }
 
 Button::~Button() {};
