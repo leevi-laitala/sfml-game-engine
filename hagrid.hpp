@@ -4,12 +4,14 @@
 #include "src/button.hpp"
 #include "src/element.hpp"
 
+#include "src/sound-manager.hpp"
+
 class Hagrid : public Engine
 {
 private:
     ResourceManager<sf::Texture, System::Resources::Textures> resTextures;
     ResourceManager<sf::Font, System::Resources::Fonts> resFonts;
-    ResourceManager<sf::Sound, System::Resources::Sounds> resSounds;
+    SoundManager mgrSound;
 
 public:
     Hagrid();
@@ -33,6 +35,12 @@ Hagrid::Hagrid()
     resTextures.load("assets/button.png", System::Resources::Textures::Button);
 
     resFonts.load("assets/aez-epic-font.ttf", System::Resources::Fonts::Default);
+
+    mgrSound.addSound("assets/naai.ogg", System::Resources::Sounds::Default);
+    mgrSound.addSound("assets/explode.ogg", System::Resources::Sounds::ButtonPress);
+
+    eventManager.addMouseButtonCallback(sf::Mouse::Button::Left, [&](const sf::Event&){ mgrSound.playSound(System::Resources::Sounds::ButtonPress); });
+    eventManager.addMouseButtonCallback(sf::Mouse::Button::Left, [&](const sf::Event&){ std::cout << "neekeri" << std::endl; });
 }
 
 Hagrid::~Hagrid() {}
@@ -47,6 +55,8 @@ void Hagrid::create()
     addElement(System::Scenes::Game, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Game), resTextures.get(System::Resources::Textures::Button), resFonts.get(System::Resources::Fonts::Default), "Mainmenu", [&](){ switchScene(System::Scenes::Mainmenu); }, sf::Vector2f(512.f, 512.f))));
 
     switchScene(System::Scenes::Mainmenu);
+
+    mgrSound.playSound(System::Resources::Sounds::Default);
 }
 
 void Hagrid::step()

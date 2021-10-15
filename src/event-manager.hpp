@@ -4,31 +4,44 @@
 #include <unordered_map>
 #include <iostream>
 #include <functional>
+#include <vector>
 
 template<typename Type>
 class ButtonManager // Handles Keyboard and mouse buttons
 {
 private:
-    std::unordered_map<Type, std::function<void(const sf::Event& event)>> m_mapButtons;
-    std::function<Type(const sf::Event& event)> getButtonEvent;
+    std::unordered_map<Type, std::vector<std::function<void(const sf::Event& event)>>> m_mapButtons;
+    std::function<Type(const sf::Event& event)> buttonEvent;
 
 public:
-    ButtonManager(std::function<Type(const sf::Event& event)> getButtonEvent)
+    ButtonManager(std::function<Type(const sf::Event& event)> buttonEvent)
     {
-        this->getButtonEvent = getButtonEvent;
+        this->buttonEvent = buttonEvent;
     }
 
     void addButtonCallback(Type id, std::function<void(const sf::Event& event)> callback)
     {
-        m_mapButtons.insert(std::pair<Type, std::function<void(const sf::Event& event)>>(id, callback));
+        auto it = m_mapButtons.find(id);
+        if (it == m_mapButtons.end()) // If id does not exist
+        {
+            std::vector<std::function<void(const sf::Event& event)>> eventVec;
+            eventVec.push_back(callback);
+            m_mapButtons.insert(std::pair<Type, std::vector<std::function<void(const sf::Event& event)>>>(id, eventVec));
+        } else
+        {
+            m_mapButtons[id].push_back(callback);
+        }
     }
 
     void processEvents(const sf::Event& event)
     {
-        Type buttonEvent = getButtonEvent(event);
-        auto it = m_mapButtons.find(buttonEvent);
+        Type buttonType = buttonEvent(event);
+
+        auto it = m_mapButtons.find(buttonType);
         if (it != m_mapButtons.end())
-            (it->second)(event);
+            for (auto i : it->second)
+                i(event);
+                //(it->second)(event);
     }
 };
 

@@ -4,7 +4,7 @@ namespace System
 {
     namespace Resources
     {
-        enum Textures
+        enum class Textures
         {
             Default = 0,
             Balloon,
@@ -14,18 +14,19 @@ namespace System
             Button
         };
 
-        enum Fonts
+        enum class Fonts
         {
             Default = 0
         };
 
-        enum Sounds
+        enum class Sounds
         {
-            Default = 0
-        }
+            Default = 0,
+            ButtonPress
+        };
     }
 
-    enum Scenes
+    enum class Scenes
     {
         Mainmenu,
         Game

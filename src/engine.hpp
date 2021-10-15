@@ -7,6 +7,7 @@
 #include "event-manager.hpp"
 
 #include <unordered_map>
+#include <SFML/Audio.hpp>
 
 class Engine
 {
