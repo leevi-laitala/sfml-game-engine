@@ -2,11 +2,7 @@
 
 SoundManager::SoundManager() {}
 
-SoundManager::~SoundManager()
-{
-    for (auto it = m_mapSnd.begin(); it != m_mapSnd.end(); ++it)
-        delete it->second;
-}
+SoundManager::~SoundManager() {}
 
 void SoundManager::addSound(const std::string& fname, System::Resources::Sounds id)
 {

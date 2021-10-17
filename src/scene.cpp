@@ -7,8 +7,10 @@ Scene::Scene(Engine* engine)
 
 Scene::~Scene()
 {
-    for (std::vector<Element*>::iterator it = m_vecElements.begin(); it != m_vecElements.end(); ++it)
-        delete *it;
+    //for (std::vector<Element*>::iterator it = m_vecElements.begin(); it != m_vecElements.end(); ++it)
+    //    delete *it;
+    for (auto it : m_vecElements)
+        delete it;
 }
 
 void Scene::addElement(Element* element)

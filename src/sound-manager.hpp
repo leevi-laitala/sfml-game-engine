@@ -19,6 +19,11 @@ struct SoundInstance
         m_snd.setLoop(loop);
     }
 
+    ~SoundInstance()
+    {
+        std::cout << "Sound Instance purged" << std::endl;
+    }
+
     void playsnd()
     {
         m_snd.play();
