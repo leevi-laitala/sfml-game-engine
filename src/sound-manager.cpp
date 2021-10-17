@@ -25,3 +25,11 @@ void SoundManager::playSound(System::Resources::Sounds id)
     if (m_mapSnd.find(id) != m_mapSnd.end())
         m_mapSnd[id]->playsnd();
 }
+
+void SoundManager::purge()
+{
+    for (auto it : m_mapSnd)
+        delete it.second;
+
+    m_resSounds.purge();
+}

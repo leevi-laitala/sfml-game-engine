@@ -1,7 +1,7 @@
 #include "engine.hpp"
 
 Engine::Engine()
-    : window(sf::VideoMode(1280, 720), "SFML")
+    : window(sf::VideoMode(1920, 1080), "SFML")
     , eventManager(&window)
 {
     //window.setFramerateLimit(60);
@@ -46,6 +46,22 @@ void Engine::run()
     std::cout << "End ran" << std::endl;
 }
 
+
+sf::RenderWindow* Engine::getWindow()
+{
+    return &window;
+}
+
+EventManager* Engine::getEventManager()
+{
+    return &eventManager;
+}
+
+SoundManager* Engine::getSoundManager()
+{
+    return &soundManager;
+}
+
 void Engine::createScene(System::Scenes scene)
 {
     if (m_mapScenes.find(scene) == m_mapScenes.end())
@@ -88,13 +104,8 @@ Scene* Engine::getScene(System::Scenes scene)
     return nullptr;
 }
 
-sf::RenderWindow* Engine::getWindow()
+Scene* Engine::getActiveScene()
 {
-    return &window;
-}
-
-EventManager* Engine::getEventManager()
-{
-    return &eventManager;
+    return getScene(activeScene);
 }
 

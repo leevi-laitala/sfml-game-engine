@@ -11,7 +11,6 @@ class Hagrid : public Engine
 private:
     ResourceManager<sf::Texture, System::Resources::Textures> resTextures;
     ResourceManager<sf::Font, System::Resources::Fonts> resFonts;
-    SoundManager mgrSound;
 
 public:
     Hagrid();
@@ -36,11 +35,8 @@ Hagrid::Hagrid()
 
     resFonts.load("assets/aez-epic-font.ttf", System::Resources::Fonts::Default);
 
-    mgrSound.addSound("assets/naai.ogg", System::Resources::Sounds::Default);
-    mgrSound.addSound("assets/explode.ogg", System::Resources::Sounds::ButtonPress);
-
-    eventManager.addMouseButtonCallback(sf::Mouse::Button::Left, [&](const sf::Event&){ mgrSound.playSound(System::Resources::Sounds::ButtonPress); });
-    eventManager.addMouseButtonCallback(sf::Mouse::Button::Left, [&](const sf::Event&){ std::cout << "neekeri" << std::endl; });
+    soundManager.addSound("assets/naai.ogg", System::Resources::Sounds::Default);
+    soundManager.addSound("assets/explode.ogg", System::Resources::Sounds::ButtonPress);
 }
 
 Hagrid::~Hagrid() {}
@@ -51,12 +47,13 @@ void Hagrid::create()
     createScene(System::Scenes::Mainmenu);
 
     addElement(System::Scenes::Game, dynamic_cast<Element*>(new Balloon(getScene(System::Scenes::Game), resTextures.get(System::Resources::Textures::Balloon))));
-    addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Mainmenu), resTextures.get(System::Resources::Textures::Button), resFonts.get(System::Resources::Fonts::Default), "Game", [&](){ switchScene(System::Scenes::Game); })));
+    addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Mainmenu), resTextures.get(System::Resources::Textures::Button), resFonts.get(System::Resources::Fonts::Default), "Game", [&](){ soundManager.playSound(System::Resources::Sounds::ButtonPress); switchScene(System::Scenes::Game); })));
     addElement(System::Scenes::Game, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Game), resTextures.get(System::Resources::Textures::Button), resFonts.get(System::Resources::Fonts::Default), "Mainmenu", [&](){ switchScene(System::Scenes::Mainmenu); }, sf::Vector2f(512.f, 512.f))));
+    addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Mainmenu), resTextures.get(System::Resources::Textures::Button), resFonts.get(System::Resources::Fonts::Default), "Quit", [&](){ window.close(); }, sf::Vector2f(512.f, 512.f))));
 
     switchScene(System::Scenes::Mainmenu);
 
-    mgrSound.playSound(System::Resources::Sounds::Default);
+    soundManager.playSound(System::Resources::Sounds::Default);
 }
 
 void Hagrid::step()
@@ -67,6 +64,8 @@ void Hagrid::step()
 
 void Hagrid::end()
 {
-    std::cout << "About tot purge assets" << std::endl;
+    std::cout << "About to purge assets" << std::endl;
     resTextures.purge();
+    resFonts.purge();
+    soundManager.purge();
 }

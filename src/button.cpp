@@ -26,13 +26,19 @@ Button::~Button() {};
 void Button::update(const float& deltaTime)
 { 
     m_hovering = m_spr.getGlobalBounds().contains(sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).x, sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).y);
-    m_pressed = m_hovering && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    //m_pressed = m_hovering && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    m_hostScene->getEngine()->getEventManager()->addMouseButtonCallback(sf::Mouse::Button::Left, [&](const sf::Event&)
+    { 
+        if (m_hostScene == m_hostScene->getEngine()->getActiveScene() && m_hovering)
+        {
+            buttonFunction();
+        }
+    });
     
     m_spr.setColor(sf::Color(255, 255, 255, (m_hovering) ? alphaOnHover : 255));
     
-    if (m_pressed && m_hovering)
-        buttonFunction();
-
+    //if (m_pressed && m_hovering)
+    //    buttonFunction();
 }
 
 void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const

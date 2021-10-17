@@ -38,4 +38,5 @@ public:
     void addSound(const std::string& fname, System::Resources::Sounds id);
     void rmSound(System::Resources::Sounds id);
     void playSound(System::Resources::Sounds id);
+    void purge();
 };

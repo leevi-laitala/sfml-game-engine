@@ -1,5 +1,4 @@
-#include "hagrid.hpp"
-#include <string>
+#include "hagrid.cpp"
 
 int main()
 {

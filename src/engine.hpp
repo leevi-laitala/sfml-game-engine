@@ -5,6 +5,7 @@
 #include "resource-manager.hpp"
 #include "enum-resources.hpp"
 #include "event-manager.hpp"
+#include "sound-manager.hpp"
 
 #include <unordered_map>
 #include <SFML/Audio.hpp>
@@ -18,6 +19,7 @@ protected:
     System::Scenes activeScene;
 
     EventManager eventManager;
+    SoundManager soundManager;
 
     sf::Clock m_deltaTimeClock;
     sf::Time m_deltaTimeClass;
@@ -37,6 +39,7 @@ public:
     // Access to members
     sf::RenderWindow* getWindow();
     EventManager* getEventManager();
+    SoundManager* getSoundManager();
 
     // Scene management
     void createScene(System::Scenes scene);
@@ -45,4 +48,5 @@ public:
     void renderScene(System::Scenes scene);
     void updateScene(System::Scenes scene);
     Scene* getScene(System::Scenes scene);
+    Scene* getActiveScene();
 };
