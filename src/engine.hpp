@@ -25,7 +25,7 @@ protected:
 
 public:
     Engine();
-    ~Engine();
+    virtual ~Engine();
 
     // Running a game
     virtual void run();
