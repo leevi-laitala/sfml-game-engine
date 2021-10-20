@@ -1,9 +1,9 @@
-#include "hagrid.cpp"
+#include "demo.hpp"
 
 int main()
 {
-    Hagrid hagrid;
-    hagrid.run();
+    Demo app;
+    app.run();
 
     return 0;
 }

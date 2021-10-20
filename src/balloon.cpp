@@ -7,6 +7,8 @@ Balloon::Balloon(Scene* hostScene, sf::Texture* tex, const sf::Vector2f& pos)
 
     m_spr.setOrigin(m_spr.getTexture()->getSize().x / 2.f, 
                     m_spr.getTexture()->getSize().y / 2.f);
+
+    reset(false);
 }
 
 Balloon::~Balloon()
@@ -16,33 +18,23 @@ Balloon::~Balloon()
 
 void Balloon::update(const float& deltaTime)
 {
-    //if (m_spr.getPosition().x < sf::Mouse::getPosition(*m_hostWindow).x)
-    //    m_spr.setPosition(m_spr.getPosition().x + 32.f * deltaTime, m_spr.getPosition().y);
+    if (m_spr.getPosition().y < (0 - m_spr.getTexture()->getSize().y / 2.f))
+        reset(true);
 
-    //if (m_spr.getPosition().x > sf::Mouse::getPosition(*m_hostWindow).x)
-    //    m_spr.setPosition(m_spr.getPosition().x - 32.f * deltaTime, m_spr.getPosition().y);
+    move(sf::Vector2f(0.f, -512.f * deltaTime), true);
+}
 
-    //if (m_spr.getPosition().y < sf::Mouse::getPosition(*m_hostWindow).y)
-    //    m_spr.setPosition(m_spr.getPosition().x, m_spr.getPosition().y + 32.f * deltaTime);
+void Balloon::reset(const bool& popsfx)
+{
+    if (popsfx)
+        m_hostScene->getEngine()->getSoundManager()->playSound(System::Resources::Sounds::BalloonPop);
 
-    //if (m_spr.getPosition().y > sf::Mouse::getPosition(*m_hostWindow).y)
-    //    m_spr.setPosition(m_spr.getPosition().x, m_spr.getPosition().y - 32.f * deltaTime);
-    //
-    if (m_spr.getPosition().x < sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).x)
-        move(sf::Vector2f(32.f * deltaTime, 0.f), true);
+    std::cout << m_spr.getTexture()->getSize().y << std::endl;
+    std::cout << m_spr.getPosition().x << ", " << m_spr.getPosition().y << std::endl;
 
-    if (m_spr.getPosition().x > sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).x)
-        move(sf::Vector2f(-32.f * deltaTime, 0.f), true);
+    m_spr.setPosition(rand() % m_hostScene->getEngine()->getWindow()->getSize().x,
+                      m_hostScene->getEngine()->getWindow()->getSize().y + m_spr.getTexture()->getSize().y);
 
-    if (m_spr.getPosition().y < sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).y)
-        move(sf::Vector2f(0.f, 32.f * deltaTime), true);
-
-    if (m_spr.getPosition().y > sf::Mouse::getPosition(*(m_hostScene->getEngine()->getWindow())).y)
-        move(sf::Vector2f(0.f, -32.f * deltaTime), true);
-    //if (m_spr.getPosition().x < *m_hostWindow.get)
-    //m_spr.setPosition(sf::Vector2f(m_spr.getPosition().x + 16.f, 0.f));
-
-    //m_spr.setPosition(sf::Vector2f(sf::Mouse::getPosition(*m_hostWindow).x,
-    //                               sf::Mouse::getPosition(*m_hostWindow).y));
+    m_spr.setColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
 }
 

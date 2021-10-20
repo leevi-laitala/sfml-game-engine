@@ -22,13 +22,15 @@ namespace System
         enum class Sounds
         {
             Default = 0,
-            ButtonPress
+            ButtonPress,
+            BalloonPop
         };
     }
 
     enum class Scenes
     {
         Mainmenu,
-        Game
+        Game,
+        Score
     };
 }

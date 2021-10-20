@@ -9,7 +9,7 @@
 
 struct SoundInstance
 {
-    sf::Sound        m_snd;
+    sf::Sound m_snd;
 
     SoundInstance(sf::SoundBuffer* bufptr, const uint8_t& vol, const float& pitch, const bool& loop)
     {

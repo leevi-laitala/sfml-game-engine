@@ -4,13 +4,7 @@ Engine::Engine()
     : window(sf::VideoMode(1920, 1080), "SFML")
     , eventManager(&window)
 {
-    //window.setFramerateLimit(60);
-    eventManager.addCallback(sf::Event::Closed, [&](const sf::Event&){ window.close(); });
-
-    eventManager.addCallback(sf::Event::Resized, [&](const sf::Event& event){ 
-        sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
-        window.setView(sf::View(visibleArea));
-    });
+    m_backgroundColor = sf::Color::Black;
 }
 
 Engine::~Engine()
@@ -30,7 +24,7 @@ void Engine::run()
         m_deltaTimeClass = m_deltaTimeClock.restart();
         deltaTime = m_deltaTimeClass.asSeconds();
 
-        window.clear();
+        window.clear(m_backgroundColor);
         
         eventManager.processEvents();
 

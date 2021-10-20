@@ -7,7 +7,7 @@ SoundManager::~SoundManager() {}
 void SoundManager::addSound(const std::string& fname, System::Resources::Sounds id)
 {
     m_resSounds.load(fname, id);
-    m_mapSnd.insert(std::pair<System::Resources::Sounds, SoundInstance*>(id, new SoundInstance(m_resSounds.get(id), 100, 1.f, false))); // Default settings
+    m_mapSnd.insert(std::pair<System::Resources::Sounds, SoundInstance*>(id, new SoundInstance(m_resSounds.get(id), 50, 1.f, false))); // Default settings
 }
 
 void SoundManager::rmSound(System::Resources::Sounds id)

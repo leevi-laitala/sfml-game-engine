@@ -21,6 +21,7 @@ protected:
     EventManager eventManager;
     SoundManager soundManager;
 
+    sf::Color m_backgroundColor;
     sf::Clock m_deltaTimeClock;
     sf::Time m_deltaTimeClass;
     float deltaTime;
