@@ -6,6 +6,7 @@ ResourceManager<Resource, ID>::ResourceManager()
 template<typename Resource, typename ID>
 ResourceManager<Resource, ID>::~ResourceManager()
 {
+    purge();
 }
 
 template<typename Resource, typename ID>
@@ -22,7 +23,7 @@ void ResourceManager<Resource, ID>::load(const std::string& fname, ID id)
         } else
             m_mapResources.insert(std::pair<ID, Resource*>(id, res));
 
-        std::cout << "Map size: " << m_mapResources.size() << std::endl;
+        std::cout << "[Res manager] Res loaded. Current map size: " << m_mapResources.size() << std::endl;
     }
 }
 
@@ -44,7 +45,7 @@ void ResourceManager<Resource, ID>::destroy(ID id)
         m_mapResources.erase(id);
     }
 
-    std::cout << "Map size: " << m_mapResources.size() << std::endl;
+    std::cout << "[Res manager] Res deleted. Current map size: " << m_mapResources.size() << std::endl;
 }
 
 template<typename Resource, typename ID>
@@ -55,5 +56,5 @@ void ResourceManager<Resource, ID>::purge()
     
     m_mapResources.clear();
 
-    std::cout << "Map size: " << m_mapResources.size() << std::endl;
+    std::cout << "[Res manager] Res purged. Current map size: " << m_mapResources.size() << " (Should be 0)" << std::endl;
 }

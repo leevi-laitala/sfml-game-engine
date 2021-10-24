@@ -1,10 +1,10 @@
 #include "include/engine.hpp"
+#include "include/button.hpp"
+#include "include/text.hpp"
+#include "include/element.hpp"
+#include "include/sound-manager.hpp"
 
 #include "src/balloon.hpp"
-#include "include/button.hpp"
-#include "include/element.hpp"
-
-#include "include/sound-manager.hpp"
 
 class Demo : public Engine
 {

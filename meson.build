@@ -9,10 +9,13 @@ sfml2_deps = [
 executable(
   'app',
   'main.cpp',
-  'src/sound-manager.cpp',
-  'src/engine.cpp',
-  'src/scene.cpp',
-  'src/element.cpp',
+  'demo.cpp',
   'src/balloon.cpp',
-  'src/button.cpp',
+
+  'include/sound-manager.cpp',
+  'include/engine.cpp',
+  'include/scene.cpp',
+  'include/element.cpp',
+  'include/button.cpp',
+  'include/text.cpp'
   dependencies : sfml2_deps)

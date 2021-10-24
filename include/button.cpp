@@ -1,7 +1,8 @@
 #include "button.hpp"
 
 Button::Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::string& str, const std::function<void()>& pressfunc, const std::function<void()>& enterfunc, const std::function<void()>& leavefunc, const sf::Vector2f& pos)
-    : Element::Element(hostScene, tex, pos), m_eventManager(hostScene->getEngine()->getWindow())
+    : Sprite::Sprite(hostScene, tex, pos), 
+      m_eventManager(hostScene->getEngine()->getWindow())
 {
     m_hostScene = hostScene;
 
@@ -9,7 +10,7 @@ Button::Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::str
     enterFunction = enterfunc;
     leaveFunction = leavefunc;
     
-    m_spr.setTexture(*tex);
+    //m_spr.setTexture(*tex);
     m_spr.setPosition(pos.x - m_spr.getTexture()->getSize().x / 2.f, pos.y - m_spr.getTexture()->getSize().y / 2.f);
 
     m_text.setFont(*fnt);

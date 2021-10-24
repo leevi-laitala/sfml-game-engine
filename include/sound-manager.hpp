@@ -21,7 +21,7 @@ struct SoundInstance
 
     ~SoundInstance()
     {
-        std::cout << "Sound Instance purged" << std::endl;
+        std::cout << "[Sound inst ] Sound Instance purged" << std::endl;
     }
 
     void playsnd()

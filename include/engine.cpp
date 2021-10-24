@@ -1,7 +1,7 @@
 #include "engine.hpp"
 
 Engine::Engine()
-    : window(sf::VideoMode(1920, 1080), "SFML")
+    : window(sf::VideoMode(1280, 720), "SFML")
     , eventManager(&window)
 {
     m_backgroundColor = sf::Color::Black;
@@ -33,11 +33,11 @@ void Engine::run()
         window.display();
     }
 
-    std::cout << "Calling end" << std::endl;
+    std::cout << "[Engine     ] Calling end" << std::endl;
 
     end();
 
-    std::cout << "End ran" << std::endl;
+    std::cout << "[Engine     ] End ran" << std::endl;
 }
 
 

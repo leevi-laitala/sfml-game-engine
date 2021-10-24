@@ -2,35 +2,42 @@
 
 namespace System
 {
-    namespace Resources
+namespace Resources
+{
+    enum class Textures
     {
-        enum class Textures
-        {
-            Default = 0,
-            Balloon,
-            Heart,
-            Dagger,
-            Pop,
-            Button
-        };
-
-        enum class Fonts
-        {
-            Default = 0
-        };
-
-        enum class Sounds
-        {
-            Default = 0,
-            ButtonPress,
-            BalloonPop
-        };
-    }
-
-    enum class Scenes
-    {
-        Mainmenu,
-        Game,
-        Score
+        Balloon = 1,
+        Heart,
+        Dagger,
+        Pop,
+        Button
     };
-}
+
+    enum class Fonts
+    {
+        EpicFont = 1
+    };
+
+    enum class Sounds
+    {
+        ButtonPress = 1,
+        BalloonPop,
+        Naai
+    };
+} // Namespace Resources
+
+enum class Scenes
+{
+    Mainmenu = 1,
+    Game,
+    Score
+};
+
+enum class Elements
+{
+    Button = 1,
+    Text,
+
+    Balloon
+};
+} // Namespace System

@@ -1,5 +1,5 @@
 #include "scene.hpp"
-#include "element.hpp"
+#include "sprite.hpp"
 #include "event-manager.hpp"
 
 #include <iostream>
@@ -8,7 +8,7 @@
 
 class Scene;
 
-class Button : public Element
+class Button : public Sprite
 {
 private:
     bool m_hovering = false;

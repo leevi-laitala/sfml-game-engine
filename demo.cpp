@@ -10,9 +10,9 @@ Demo::Demo()
     resTextures.load("assets/sprites/pop.png", System::Resources::Textures::Pop);
     resTextures.load("assets/sprites/button.png", System::Resources::Textures::Button);
 
-    resFonts.load("assets/fonts/aez-epic-font.ttf", System::Resources::Fonts::Default);
+    resFonts.load("assets/fonts/aez-epic-font.ttf", System::Resources::Fonts::EpicFont);
 
-    soundManager.addSound("assets/sfx/naai.ogg", System::Resources::Sounds::Default);
+    soundManager.addSound("assets/sfx/naai.ogg", System::Resources::Sounds::Naai);
     soundManager.addSound("assets/sfx/explode.ogg", System::Resources::Sounds::ButtonPress);
     soundManager.addSound("assets/sfx/pop.ogg", System::Resources::Sounds::BalloonPop);
 
@@ -35,23 +35,23 @@ void Demo::create()
     //
     addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Mainmenu),
                                                                            resTextures.get(System::Resources::Textures::Button),
-                                                                           resFonts.get(System::Resources::Fonts::Default), 
+                                                                           resFonts.get(System::Resources::Fonts::EpicFont), 
                                                                            "Play", 
                                                                            [&](){ soundManager.playSound(System::Resources::Sounds::ButtonPress); 
                                                                                   switchScene(System::Scenes::Game);
                                                                                 },
-                                                                           [](){},
+                                                                           [&](){ soundManager.playSound(System::Resources::Sounds::BalloonPop); },
                                                                            [](){},
                                                                            sf::Vector2f(window.getSize().x * .25f, window.getSize().y * .6f)
                                                                            )));
 
     addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Mainmenu), 
                                                                            resTextures.get(System::Resources::Textures::Button), 
-                                                                           resFonts.get(System::Resources::Fonts::Default), 
+                                                                           resFonts.get(System::Resources::Fonts::EpicFont), 
                                                                            "Quit", 
                                                                            [&](){ window.close();
                                                                                 }, 
-                                                                           [](){},
+                                                                           [&](){ soundManager.playSound(System::Resources::Sounds::BalloonPop); },
                                                                            [](){},
                                                                            sf::Vector2f(window.getSize().x * .75f, window.getSize().y * .6f)
                                                                            )));
@@ -64,7 +64,7 @@ void Demo::create()
     // Score scene
     addElement(System::Scenes::Score, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Score), 
                                                                            resTextures.get(System::Resources::Textures::Button), 
-                                                                           resFonts.get(System::Resources::Fonts::Default), 
+                                                                           resFonts.get(System::Resources::Fonts::EpicFont), 
                                                                            "Mainmenu", 
                                                                            [&](){ switchScene(System::Scenes::Mainmenu);
                                                                                 }, 
@@ -73,8 +73,12 @@ void Demo::create()
                                                                            sf::Vector2f(512.f, 512.f)
                                                                            )));
      
+    addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Text(getScene(System::Scenes::Mainmenu),
+                                                                         sf::Text("Demo", *resFonts.get(System::Resources::Fonts::EpicFont), 72)
+                                                                         )));
 
     switchScene(System::Scenes::Mainmenu);
+    soundManager.playSound(System::Resources::Sounds::Naai);
 }
 
 void Demo::step()
@@ -85,7 +89,6 @@ void Demo::step()
 
 void Demo::end()
 {
-    std::cout << "About to purge assets" << std::endl;
     resTextures.purge();
     resFonts.purge();
     soundManager.purge();

@@ -9,6 +9,7 @@
 
 #include <unordered_map>
 #include <SFML/Audio.hpp>
+#include <memory>
 
 class Engine
 {
