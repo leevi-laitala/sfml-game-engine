@@ -3,6 +3,8 @@
 Text::Text(Scene* hostScene, const sf::Text& text, const sf::Vector2f& pos)
     : Element::Element(hostScene, pos)
 {
+    m_type = System::Elements::Balloon;
+
     m_text = text;
     m_text.setPosition(pos);
 }

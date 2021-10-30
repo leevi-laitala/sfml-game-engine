@@ -35,7 +35,9 @@ enum class Scenes
 
 enum class Elements
 {
-    Button = 1,
+    Default = 1,
+    Sprite,
+    Button,
     Text,
 
     Balloon

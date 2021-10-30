@@ -56,6 +56,9 @@ void Demo::create()
                                                                            sf::Vector2f(window.getSize().x * .75f, window.getSize().y * .6f)
                                                                            )));
 
+    addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Balloon(getScene(System::Scenes::Mainmenu),
+                                                                        resTextures.get(System::Resources::Textures::Balloon)
+                                                                        )));
     // Game scene
     addElement(System::Scenes::Game, dynamic_cast<Element*>(new Balloon(getScene(System::Scenes::Game),
                                                                         resTextures.get(System::Resources::Textures::Balloon)

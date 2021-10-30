@@ -6,6 +6,9 @@ Button::Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::str
 {
     m_hostScene = hostScene;
 
+    m_type = System::Elements::Button;
+    m_depth = 10;
+
     pressFunction = pressfunc;
     enterFunction = enterfunc;
     leaveFunction = leavefunc;

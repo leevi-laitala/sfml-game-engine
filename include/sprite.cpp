@@ -3,6 +3,8 @@
 Sprite::Sprite(Scene* hostScene, sf::Texture* tex, const sf::Vector2f& pos)
     : Element::Element(hostScene, pos)
 {
+    m_type = System::Elements::Sprite;
+
     m_tex = tex;
     m_spr.setTexture(*m_tex);
     m_spr.setPosition(pos);

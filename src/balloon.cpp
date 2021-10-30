@@ -3,6 +3,9 @@
 Balloon::Balloon(Scene* hostScene, sf::Texture* tex, const sf::Vector2f& pos)
     : Sprite::Sprite(hostScene, tex, pos)
 {
+    m_type = System::Elements::Balloon;
+    m_depth = 13;
+
     m_spr.setOrigin(m_spr.getTexture()->getSize().x / 2.f, 
                     m_spr.getTexture()->getSize().y / 2.f);
 
