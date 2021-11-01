@@ -1,12 +1,12 @@
-#include "scene.hpp"
+#pragma once
+
 #include "sprite.hpp"
+#include "scene.hpp"
 #include "event-manager.hpp"
 
 #include <iostream>
 #include <string>
 #include <functional>
-
-class Scene;
 
 class Button : public Sprite
 {
@@ -27,8 +27,7 @@ private:
     EventManager m_eventManager;
 
 public:
-    //Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::string& str, const std::function<void()>& pressfunc, const sf::Vector2f& pos = sf::Vector2f(0.f, 0.f));
-    Button(Scene* hostScene, sf::Texture* tex, sf::Font* fnt, const std::string& str, const std::function<void()>& pressfunc, const std::function<void()>& enterfunc, const std::function<void()>& leavefunc, const sf::Vector2f& pos = sf::Vector2f(0.f, 0.f));
+    Button(Scene* hostScene, sf::Texture* tex, const sf::Text& text, const std::function<void()>& pressfunc, const std::function<void()>& enterfunc, const std::function<void()>& leavefunc, const sf::Vector2f& pos = sf::Vector2f(0.f, 0.f));
     ~Button();
     
     void update(const float& deltaTime) override;

@@ -2,6 +2,7 @@
 
 #include <unordered_map>
 #include <string>
+#include <iostream>
 
 template<typename Resource, typename ID>
 class ResourceManager

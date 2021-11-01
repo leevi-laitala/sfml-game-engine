@@ -35,8 +35,7 @@ void Demo::create()
     //
     addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Mainmenu),
                                                                            resTextures.get(System::Resources::Textures::Button),
-                                                                           resFonts.get(System::Resources::Fonts::EpicFont), 
-                                                                           "Play", 
+                                                                           sf::Text("Play", *resFonts.get(System::Resources::Fonts::EpicFont), 72),
                                                                            [&](){ soundManager.playSound(System::Resources::Sounds::ButtonPress); 
                                                                                   switchScene(System::Scenes::Game);
                                                                                 },
@@ -47,8 +46,7 @@ void Demo::create()
 
     addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Mainmenu), 
                                                                            resTextures.get(System::Resources::Textures::Button), 
-                                                                           resFonts.get(System::Resources::Fonts::EpicFont), 
-                                                                           "Quit", 
+                                                                           sf::Text("Quit", *resFonts.get(System::Resources::Fonts::EpicFont), 72),
                                                                            [&](){ window.close();
                                                                                 }, 
                                                                            [&](){ soundManager.playSound(System::Resources::Sounds::BalloonPop); },
@@ -57,8 +55,8 @@ void Demo::create()
                                                                            )));
 
     addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Balloon(getScene(System::Scenes::Mainmenu),
-                                                                        resTextures.get(System::Resources::Textures::Balloon)
-                                                                        )));
+                                                                            resTextures.get(System::Resources::Textures::Balloon)
+                                                                            )));
     // Game scene
     addElement(System::Scenes::Game, dynamic_cast<Element*>(new Balloon(getScene(System::Scenes::Game),
                                                                         resTextures.get(System::Resources::Textures::Balloon)
@@ -66,15 +64,14 @@ void Demo::create()
 
     // Score scene
     addElement(System::Scenes::Score, dynamic_cast<Element*>(new Button(getScene(System::Scenes::Score), 
-                                                                           resTextures.get(System::Resources::Textures::Button), 
-                                                                           resFonts.get(System::Resources::Fonts::EpicFont), 
-                                                                           "Mainmenu", 
-                                                                           [&](){ switchScene(System::Scenes::Mainmenu);
-                                                                                }, 
-                                                                           [](){},
-                                                                           [](){},
-                                                                           sf::Vector2f(512.f, 512.f)
-                                                                           )));
+                                                                        resTextures.get(System::Resources::Textures::Button), 
+                                                                        sf::Text("Mainmenu", *resFonts.get(System::Resources::Fonts::EpicFont), 72),
+                                                                        [&](){ switchScene(System::Scenes::Mainmenu);
+                                                                             }, 
+                                                                        [](){},
+                                                                        [](){},
+                                                                        sf::Vector2f(512.f, 512.f)
+                                                                        )));
      
     addElement(System::Scenes::Mainmenu, dynamic_cast<Element*>(new Text(getScene(System::Scenes::Mainmenu),
                                                                          sf::Text("Demo", *resFonts.get(System::Resources::Fonts::EpicFont), 72)

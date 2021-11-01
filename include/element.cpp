@@ -1,5 +1,4 @@
 #include "element.hpp"
-#include "scene.hpp"
 
 Element::Element(Scene* hostScene, const sf::Vector2f& pos)
 {

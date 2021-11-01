@@ -2,8 +2,6 @@
 
 #include "element.hpp"
 
-class Scene;
-
 class Sprite : public Element
 {
 protected:

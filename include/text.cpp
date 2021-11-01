@@ -1,5 +1,7 @@
 #include "text.hpp"
 
+// Same as element, but has only text
+
 Text::Text(Scene* hostScene, const sf::Text& text, const sf::Vector2f& pos)
     : Element::Element(hostScene, pos)
 {

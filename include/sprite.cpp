@@ -1,5 +1,7 @@
 #include "sprite.hpp"
 
+// Same as element, but has texture and sprite
+
 Sprite::Sprite(Scene* hostScene, sf::Texture* tex, const sf::Vector2f& pos)
     : Element::Element(hostScene, pos)
 {

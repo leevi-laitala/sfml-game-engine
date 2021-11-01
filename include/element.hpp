@@ -5,8 +5,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-// Forward declarations
-namespace System { enum class Elements; }
 class Scene;
 
 class Element : public sf::Drawable

@@ -3,11 +3,8 @@
 #include "../include/sprite.hpp"
 #include "../include/scene.hpp"
 
-#include <SFML/Graphics.hpp>
-#include <iostream>
 #include <stdlib.h>
 
-class Scene;
 
 class Balloon : public Sprite
 {

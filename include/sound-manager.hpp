@@ -1,12 +1,13 @@
 #pragma once
 
+#include "resource-manager.hpp"
+#include "enum-resources.hpp" 
+
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <map>
 
-#include "enum-resources.hpp" 
-#include "resource-manager.hpp"
-
+// TODO: This probably isnt necessary
 struct SoundInstance
 {
     sf::Sound m_snd;
@@ -30,6 +31,7 @@ struct SoundInstance
     }
 };
 
+// Sound manager class contains it's own resource manager
 class SoundManager
 {
 private:

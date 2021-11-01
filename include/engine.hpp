@@ -6,6 +6,8 @@
 #include "enum-resources.hpp"
 #include "event-manager.hpp"
 #include "sound-manager.hpp"
+#include "button.hpp"
+#include "text.hpp"
 
 #include <unordered_map>
 #include <SFML/Audio.hpp>
@@ -33,7 +35,6 @@ public:
 
     // Running a game
     virtual void run();
-
     virtual void create() = 0;
     virtual void step() = 0;
     virtual void end() = 0;
@@ -46,9 +47,11 @@ public:
     // Scene management
     void createScene(System::Scenes scene);
     void switchScene(System::Scenes scene);
+    Scene* getScene(System::Scenes scene);
+    Scene* getActiveScene();
+
+    // Element management
     void addElement(System::Scenes scene, Element* element);
     void renderScene(System::Scenes scene);
     void updateScene(System::Scenes scene);
-    Scene* getScene(System::Scenes scene);
-    Scene* getActiveScene();
 };
